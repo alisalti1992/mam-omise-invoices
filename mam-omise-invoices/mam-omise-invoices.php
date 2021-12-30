@@ -15,7 +15,7 @@
  * @wordpress-plugin
  * Plugin Name:       Move Ahead Media Omise Invoices
  * Plugin URI:        https://github.com/moveaheadmedia/mam-omise-invoices
- * Description:       This is a short description of what the plugin does. It's displayed in the WordPress admin area.
+ * Description:       Use this shortcode <code>[mam-omise-invoices]</code> to add an Omise payment form to your website where people can put in their details and pay.
  * Version:           1.0.0
  * Author:            Move Ahead Media
  * Author URI:        https://github.com/moveaheadmedia/
