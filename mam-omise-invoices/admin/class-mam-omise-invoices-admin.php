@@ -100,4 +100,182 @@ class Mam_Omise_Invoices_Admin {
 
 	}
 
+	/**
+	 * Add Options Page
+	 *
+	 * @since    1.0.0
+	 */
+	public function mam_omise_invoices_options_page()
+    {
+        // Check function exists.
+        if (function_exists('acf_add_options_page')) {
+
+            // Register options page.
+            $option_page = acf_add_options_page(array(
+                'page_title' => __('Omise Invoices'),
+                'menu_title' => __('Omise Invoices'),
+                'menu_slug' => 'mam-omise-invoices-options',
+                'capability' => 'edit_posts',
+                'redirect' => false
+            ));
+        }
+
+        // Add Options Page Custom Fields
+        if (function_exists('acf_add_local_field_group')){
+            acf_add_local_field_group(array(
+                'key' => 'group_61cd6d3873bb7',
+                'title' => 'Omise Invoices Settings',
+                'fields' => array(
+                    array(
+                        'key' => 'field_61cd6d4f2148a',
+                        'label' => 'Mode',
+                        'name' => 'mode',
+                        'type' => 'select',
+                        'instructions' => '',
+                        'required' => 0,
+                        'conditional_logic' => 0,
+                        'wrapper' => array(
+                            'width' => '',
+                            'class' => '',
+                            'id' => '',
+                        ),
+                        'choices' => array(
+                            'Test' => 'Test',
+                            'Live' => 'Live',
+                        ),
+                        'default_value' => false,
+                        'allow_null' => 0,
+                        'multiple' => 0,
+                        'ui' => 0,
+                        'return_format' => 'value',
+                        'ajax' => 0,
+                        'placeholder' => '',
+                    ),
+                    array(
+                        'key' => 'field_61cd6de92148b',
+                        'label' => 'Test Public Key',
+                        'name' => 'test_public_key',
+                        'type' => 'text',
+                        'instructions' => '',
+                        'required' => 0,
+                        'conditional_logic' => array(
+                            array(
+                                array(
+                                    'field' => 'field_61cd6d4f2148a',
+                                    'operator' => '==',
+                                    'value' => 'Test',
+                                ),
+                            ),
+                        ),
+                        'wrapper' => array(
+                            'width' => '',
+                            'class' => '',
+                            'id' => '',
+                        ),
+                        'default_value' => '',
+                        'placeholder' => '',
+                        'prepend' => '',
+                        'append' => '',
+                        'maxlength' => '',
+                    ),
+                    array(
+                        'key' => 'field_61cd6e092148c',
+                        'label' => 'Test Secret Key',
+                        'name' => 'test_secret_key',
+                        'type' => 'password',
+                        'instructions' => '',
+                        'required' => 0,
+                        'conditional_logic' => array(
+                            array(
+                                array(
+                                    'field' => 'field_61cd6d4f2148a',
+                                    'operator' => '==',
+                                    'value' => 'Test',
+                                ),
+                            ),
+                        ),
+                        'wrapper' => array(
+                            'width' => '',
+                            'class' => '',
+                            'id' => '',
+                        ),
+                        'placeholder' => '',
+                        'prepend' => '',
+                        'append' => '',
+                    ),
+                    array(
+                        'key' => 'field_61cd6e332148d',
+                        'label' => 'Live Public Key',
+                        'name' => 'live_public_key',
+                        'type' => 'text',
+                        'instructions' => '',
+                        'required' => 0,
+                        'conditional_logic' => array(
+                            array(
+                                array(
+                                    'field' => 'field_61cd6d4f2148a',
+                                    'operator' => '==',
+                                    'value' => 'Live',
+                                ),
+                            ),
+                        ),
+                        'wrapper' => array(
+                            'width' => '',
+                            'class' => '',
+                            'id' => '',
+                        ),
+                        'default_value' => '',
+                        'placeholder' => '',
+                        'prepend' => '',
+                        'append' => '',
+                        'maxlength' => '',
+                    ),
+                    array(
+                        'key' => 'field_61cd6e382148e',
+                        'label' => 'Live Secret Key',
+                        'name' => 'live_secret_key',
+                        'type' => 'password',
+                        'instructions' => '',
+                        'required' => 0,
+                        'conditional_logic' => array(
+                            array(
+                                array(
+                                    'field' => 'field_61cd6d4f2148a',
+                                    'operator' => '==',
+                                    'value' => 'Live',
+                                ),
+                            ),
+                        ),
+                        'wrapper' => array(
+                            'width' => '',
+                            'class' => '',
+                            'id' => '',
+                        ),
+                        'placeholder' => '',
+                        'prepend' => '',
+                        'append' => '',
+                    ),
+                ),
+                'location' => array(
+                    array(
+                        array(
+                            'param' => 'options_page',
+                            'operator' => '==',
+                            'value' => 'mam-omise-invoices-options',
+                        ),
+                    ),
+                ),
+                'menu_order' => 0,
+                'position' => 'normal',
+                'style' => 'default',
+                'label_placement' => 'top',
+                'instruction_placement' => 'label',
+                'hide_on_screen' => '',
+                'active' => true,
+                'description' => '',
+            ));
+        }
+	}
+
+
 }

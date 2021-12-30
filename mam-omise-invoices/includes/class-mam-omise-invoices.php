@@ -165,8 +165,9 @@ class Mam_Omise_Invoices {
 
 		$this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'enqueue_styles' );
 		$this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'enqueue_scripts' );
+        $this->loader->add_action('plugins_loaded', $plugin_admin,'mam_omise_invoices_options_page');
 
-	}
+    }
 
 	/**
 	 * Register all of the hooks related to the public-facing functionality
