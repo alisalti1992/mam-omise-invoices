@@ -1,29 +1,22 @@
-#Move Ahead Media Omise Invoices
+=== Move Ahead Media Omise Invoices ===
 Contributors: (alisal)
-
 Donate link: https://github.com/moveaheadmedia/
-
 Tags: Omise, Invoices
-
 Requires at least: 5.0.0
-
 Tested up to: 5.8.2
-
 Stable tag: 1.0
-
 License: GPLv2 or later
-
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
 Use this shortcode [mam-omise-invoices] to add an Omise payment form to your website where people can put in their details and pay.
 
-##Description
+== Description ==
 
 Use this shortcode [mam-omise-invoices] to add an Omise payment form to your website where people can put in their details and pay.
 
 You need Omise account to be able to use this plugin.
 
-##Installation
+== Installation ==
 
 This section describes how to install the plugin and get it working.
 
@@ -31,7 +24,7 @@ This section describes how to install the plugin and get it working.
 2. Activate the plugin through the 'Plugins' menu in WordPress
 3. Go to plugin settings and add you API keys
 
-## Changelog
+== Changelog ==
 
-###1.0.0
+= 1.0.0 =
 * Version 1 release.
