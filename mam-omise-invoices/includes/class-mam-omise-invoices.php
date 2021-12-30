@@ -99,6 +99,15 @@ class Mam_Omise_Invoices {
 	 */
 	private function load_dependencies() {
 
+        /**
+         * Custom Fields Plugin
+         */
+        require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/acf/acf.php';
+        // Customize the url setting to fix incorrect asset URLs.
+        add_filter('acf/settings/url', function($url){
+           return plugin_dir_url(__DIR__) . 'includes/acf/';
+        });
+
 		/**
 		 * The class responsible for orchestrating the actions and filters of the
 		 * core plugin.
@@ -116,11 +125,11 @@ class Mam_Omise_Invoices {
 		 */
 		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'admin/class-mam-omise-invoices-admin.php';
 
-		/**
-		 * The class responsible for defining all actions that occur in the public-facing
-		 * side of the site.
-		 */
-		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'public/class-mam-omise-invoices-public.php';
+        /**
+         * The class responsible for defining all actions that occur in the public-facing
+         * side of the site.
+         */
+        require_once plugin_dir_path( dirname( __FILE__ ) ) . 'public/class-mam-omise-invoices-public.php';
 
 		$this->loader = new Mam_Omise_Invoices_Loader();
 
