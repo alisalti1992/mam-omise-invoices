@@ -20,17 +20,18 @@
  * @subpackage Mam_Omise_Invoices/includes
  * @author     Move Ahead Media <ali@moveaheadmedia.co.uk>
  */
-class Mam_Omise_Invoices_Activator {
+class Mam_Omise_Invoices_Activator
+{
 
-	/**
-	 * Short Description. (use period)
-	 *
-	 * Long Description.
-	 *
-	 * @since    1.0.0
-	 */
-	public static function activate() {
-
-	}
+    /**
+     * On plugin activate add mam_omise_post type and flush permalinks
+     *
+     * @since    1.0.0
+     */
+    public static function activate()
+    {
+        Mam_Omise_Invoices_Admin::mam_omise_invoices();
+        flush_rewrite_rules();
+    }
 
 }

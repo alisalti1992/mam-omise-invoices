@@ -108,6 +108,23 @@ class Mam_Omise_Invoices {
            return plugin_dir_url(__DIR__) . 'includes/acf/';
         });
 
+        /**
+         * Omise PHP Client
+         */
+        require_once plugin_dir_path(dirname(__FILE__)) . 'includes/omise/Omise.php';
+        $mode = get_field('mode', 'option');
+        if (isset($_POST['mode']) && $_POST['mode'] != '') {
+            $mode = $_POST['mode'];
+        }
+        $public_key = get_field('test_public_key', 'option');
+        $secret_key = get_field('test_secret_key', 'option');
+        if ($mode == 'Live') {
+            $public_key = get_field('live_public_key', 'option');
+            $secret_key = get_field('live_secret_key', 'option');
+        }
+        define('OMISE_PUBLIC_KEY', $public_key);
+        define('OMISE_SECRET_KEY', $secret_key);
+
 		/**
 		 * The class responsible for orchestrating the actions and filters of the
 		 * core plugin.
@@ -166,6 +183,8 @@ class Mam_Omise_Invoices {
 		$this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'enqueue_styles' );
 		$this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'enqueue_scripts' );
         $this->loader->add_action('plugins_loaded', $plugin_admin,'mam_omise_invoices_options_page');
+        // register MAM Omise Invoices post type
+        $this->loader->add_action('init', $plugin_admin, 'mam_omise_invoices');
 
     }
 
@@ -183,7 +202,23 @@ class Mam_Omise_Invoices {
 		$this->loader->add_action( 'wp_enqueue_scripts', $plugin_public, 'enqueue_styles' );
 		$this->loader->add_action( 'wp_enqueue_scripts', $plugin_public, 'enqueue_scripts' );
 
-	}
+        // [mam-omise-invoices]
+        add_shortcode( 'mam-omise-invoices', array($plugin_public, 'mam_omise_invoices_shortcode') );
+
+
+        // add javascript variables required for the form
+        $this->loader->add_action('wp_head', $plugin_public, 'add_javascript_variables');
+
+        // handle ajax forms
+        $this->loader->add_action('wp_ajax_mam_invoice_send_form', $plugin_public, 'mam_invoice_send_form');
+        $this->loader->add_action('wp_ajax_nopriv_mam_invoice_send_form', $plugin_public, 'mam_invoice_send_form');
+
+        // payment complete endpoint
+        $this->loader->add_action('init', $plugin_public, 'add_rewrite_endpoints');
+        $this->loader->add_action('template_redirect', $plugin_public, 'render_template');
+
+
+    }
 
 	/**
 	 * Run the loader to execute all of the hooks with WordPress.
